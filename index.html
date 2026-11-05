@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Security Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f1f5ed;
+            color: #263b2d;
+            margin: 0;
+        }
+
+        header {
+            background-color: #315c3b;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        nav {
+            background-color: #24482e;
+            text-align: center;
+            padding: 12px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #315c3b;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #315c3b;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #24482e;
+        }
+
+        #results, #conversionResult {
+            background-color: #e5f0e3;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #24482e;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Food Security Calculator</h1>
+        <p>Estimating the food and farmland needed by a community</p>
+        <p><b>Group 3</b></p>
+    </header>
+
+    <nav>
+        <a href="#calculator">Calculator</a>
+        <a href="#conversion">Unit Conversion</a>
+        <a href="#physics">Units and Measurements</a>
+        <a href="#limitations">Limitations</a>
+        <a href="#references">References</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="section">
+            <h2>About the Website</h2>
+
+            <p>
+                Food is a basic human right. However, some families still
+                experience hunger and food insecurity. This website helps
+                estimate how much food a community needs and how much
+                farmland may be needed to produce it.
+            </p>
+
+            <p>
+                The website also shows how units and measurements are used
+                in real-life calculations.
+            </p>
+        </div>
+
+        <div class="section" id="calculator">
+            <h2>Food and Farmland Calculator</h2>
+
+            <p>Enter the information below to calculate the estimated requirements.</p>
+
+            <label>Population (number of people):</label>
+            <input type="number" id="population" value="10000" min="1">
+
+            <label>Daily food requirement per person (kg):</label>
+            <input type="number" id="dailyFood" value="0.5" min="0.01" step="0.01">
+
+            <label>Annual crop yield per hectare (kg):</label>
+            <input type="number" id="yield" value="4000" min="1">
+
+            <label>Additional food reserve (%):</label>
+            <input type="number" id="reserve" value="10" min="0" max="100">
+
+            <button onclick="calculateFood()">Calculate</button>
+
+            <div id="results">
+                <h3>Results will appear here.</h3>
+                <p>Enter your values and click Calculate.</p>
+            </div>
+        </div>
+
+        <div class="section" id="conversion">
+            <h2>Unit Conversion</h2>
+
+            <p>
+                Use this converter to change kilograms to metric tonnes or
+                hectares to square meters.
+            </p>
+
+            <label>Enter a value:</label>
+            <input type="number" id="conversionValue" min="0" step="any">
+
+            <label>Choose a conversion:</label>
+            <select id="conversionType">
+                <option value="kgToTonnes">Kilograms to Metric Tonnes</option>
+                <option value="tonnesToKg">Metric Tonnes to Kilograms</option>
+                <option value="hectaresToSquareMeters">Hectares to Square Meters</option>
+                <option value="squareMetersToHectares">Square Meters to Hectares</option>
+            </select>
+
+            <button onclick="convertUnits()">Convert</button>
+
+            <div id="conversionResult">
+                <h3>Conversion result will appear here.</h3>
+            </div>
+        </div>
+
+        <div class="section" id="physics">
+            <h2>Physics Concept: Units and Measurements</h2>
+
+            <p>
+                Units and measurements are important because they help us
+                describe quantities correctly. For example, food can be
+                measured in kilograms, while land can be measured in
+                hectares or square meters.
+            </p>
+
+            <h3>Units Used</h3>
+            <ul>
+                <li>Kilogram (kg) for food mass</li>
+                <li>People for population</li>
+                <li>Hectare (ha) for farmland area</li>
+                <li>Square meter (m²) for area</li>
+                <li>Metric tonne (t) for large food amounts</li>
+            </ul>
+
+            <h3>Formulas Used</h3>
+
+            <p><b>Annual Food Requirement</b></p>
+            <p>F = P x d x 365</p>
+
+            <p>
+                F = annual food requirement in kilograms<br>
+                P = population<br>
+                d = daily food requirement per person in kilograms<br>
+                365 = number of days in one year
+            </p>
+
+            <p><b>Food Reserve</b></p>
+            <p>F = F x (1 + Reserve / 100)</p>
+
+            <p><b>Farmland Area</b></p>
+            <p>A = F / Y</p>
+
+            <p>
+                A = farmland area in hectares<br>
+                F = annual food requirement with reserve<br>
+                Y = annual crop yield in kilograms per hectare
+            </p>
+
+            <h3>Unit Conversions</h3>
+            <p>1 metric tonne = 1,000 kilograms</p>
+            <p>1 hectare = 10,000 square meters</p>
+        </div>
+
+        <div class="section">
+            <h2>Variables Used</h2>
+
+            <p><b>Independent Variable:</b> Population (P)</p>
+            <p><b>Dependent Variable 1:</b> Food requirement (F)</p>
+            <p><b>Dependent Variable 2:</b> Farmland area (A)</p>
+        </div>
+
+        <div class="section" id="limitations">
+            <h2>Assumptions and Limitations</h2>
+
+            <h3>Assumptions</h3>
+            <ul>
+                <li>Each person needs the same amount of food per day.</li>
+                <li>Food needs stay the same throughout the year.</li>
+                <li>Crop yield is the same in all farmland.</li>
+                <li>The calculator uses 365 days in one year.</li>
+            </ul>
+
+            <h3>Limitations</h3>
+            <ul>
+                <li>Food needs are different for every person.</li>
+                <li>Crop yield depends on weather, soil, water, and farming methods.</li>
+                <li>Food waste, imports, and exports are not included.</li>
+                <li>The result is only an estimate.</li>
+            </ul>
+        </div>
+
+        <div class="section" id="references">
+            <h2>References</h2>
+
+            <p>
+                National Institute of Standards and Technology. (n.d.).
+                <i>Metric Conversion Card.</i>
+                <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.365-2024.pdf" target="_blank">
+                    Read here
+                </a>
+            </p>
+
+            <p>
+                United Nations Human Rights Office of the High Commissioner. (n.d.).
+                <i>About the right to food and human rights.</i>
+                <a href="https://www.ohchr.org/en/special-procedures/sr-food/about-right-food-and-human-rights" target="_blank">
+                    Read here
+                </a>
+            </p>
+
+            <p>
+                Domnescu, O. (2026, October 23).
+                <i>Food insecurity in the Philippines: Why hunger persists despite falling rates.</i>
+                Development Aid.
+                <a href="https://www.developmentaid.org/amp/news-stream/post/194100/philippines-food-crisis" target="_blank">
+                    Read here
+                </a>
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Food Security Calculator | Group 3 | SH-SCI 6 HTML Practical Application</p>
+    </footer>
+
+    <script>
+        function calculateFood() {
+            var population = document.getElementById("population").value;
+            var dailyFood = document.getElementById("dailyFood").value;
+            var cropYield = document.getElementById("yield").value;
+            var reserve = document.getElementById("reserve").value;
+
+            population = Number(population);
+            dailyFood = Number(dailyFood);
+            cropYield = Number(cropYield);
+            reserve = Number(reserve);
+
+            if (population <= 0 || dailyFood <= 0 || cropYield <= 0 || reserve < 0 || reserve > 100) {
+                document.getElementById("results").innerHTML =
+                    "<h3>Invalid Input</h3>" +
+                    "<p>Please enter positive values. The reserve must be between 0 and 100.</p>";
+                return;
+            }
+
+            var food = population * dailyFood * 365;
+
+            food = food * (1 + reserve / 100);
+
+            var farmland = food / cropYield;
+
+            var squareMeters = farmland * 10000;
+
+            document.getElementById("results").innerHTML =
+                "<h3>Estimated Results</h3>" +
+                "<p><b>Annual Food Requirement:</b> " + food.toLocaleString() + " kg</p>" +
+                "<p><b>Food in Metric Tonnes:</b> " + (food / 1000).toLocaleString() + " tonnes</p>" +
+                "<p><b>Required Farmland:</b> " + farmland.toLocaleString() + " hectares</p>" +
+                "<p><b>Farmland in Square Meters:</b> " + squareMeters.toLocaleString() + " square meters</p>" +
+                "<p><i>Note: These results are estimates based on the values entered.</i></p>";
+        }
+
+        function convertUnits() {
+            var value = document.getElementById("conversionValue").value;
+            var type = document.getElementById("conversionType").value;
+
+            value = Number(value);
+
+            if (value < 0 || value === "") {
+                document.getElementById("conversionResult").innerHTML =
+                    "<h3>Invalid Input</h3>" +
+                    "<p>Please enter a positive number.</p>";
+                return;
+            }
+
+            var result = "";
+            var unit = "";
+
+            if (type == "kgToTonnes") {
+                result = value / 1000;
+                unit = "metric tonnes";
+            }
+            else if (type == "tonnesToKg") {
+                result = value * 1000;
+                unit = "kilograms";
+            }
+            else if (type == "hectaresToSquareMeters") {
+                result = value * 10000;
+                unit = "square meters";
+            }
+            else if (type == "squareMetersToHectares") {
+                result = value / 10000;
+                unit = "hectares";
+            }
+
+            document.getElementById("conversionResult").innerHTML =
+                "<h3>Conversion Result</h3>" +
+                "<p><b>" + value.toLocaleString() + "</b> is equal to <b>" +
+                result.toLocaleString() + " " + unit + "</b>.</p>";
+        }
+    </script>
+
+</body>
+</html>
